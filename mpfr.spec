@@ -1,17 +1,14 @@
 Name: mpfr
-Version: 3.1.6
-Release: 3
+Version: 4.1.0
+Release: 1
 Summary: A C library for multiple-precision floating-point computations
 URL: http://www.mpfr.org/
 License: LGPLv3+ and GPLv3+ and GFDL
-BuildRequires: autoconf libtool gmp-devel gcc git
+BuildRequires: autoconf libtool gmp-devel gcc git mpfr
 Requires: /sbin/ldconfig
 Requires: gmp >= 4.2.3
 
 Source0: http://www.mpfr.org/%{name}-%{version}/%{name}-%{version}.tar.xz
-
-Patch0: rev11783.patch
-Patch1: rev11982.patch
 
 %description
 MPFR is a C library for arbitrary-precision binary floating-point computation 
@@ -48,6 +45,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 rm -f $RPM_BUILD_ROOT%{_pkgdocdir}/COPYING  $RPM_BUILD_ROOT%{_pkgdocdir}/COPYING.LESSER
+cp -a %{_libdir}/libmpfr.so.4 $RPM_BUILD_ROOT%{_libdir}
+cp -a %{_libdir}/libmpfr.so.4.1.6 $RPM_BUILD_ROOT%{_libdir}
 
 %check
 make %{?_smp_mflags} check
@@ -78,7 +77,11 @@ fi
 %{_libdir}/libmpfr.so
 %{_includedir}/*.h
 %{_infodir}/mpfr.info*
+%{_libdir}/pkgconfig/mpfr.pc
 
 %changelog
+* Fri Jul 24 2020 jinzhimin<jinzhimin2@huawei.com> - 4.1.0-1
+- update to 4.1.0
+
 * Tue Aug 13 2019 openEuler Buildteam <buildteam@openeuler.org> - 3.1.6-3
 - Package init
