@@ -1,0 +1,79 @@
+name: mpfr
+old_version: 3.1.6
+new_version: 4.1.0
+interface_differences:
+- type: 'feature'
+  item: 新功能mpfr_free_cache2
+  diff: 多线程应用程序共享缓存
+  influence: 功能增强
+- type: 'feature'
+  item: MPFR依赖
+  diff: MPFR现在依赖于GMP 5.0+，而不是4.1+。
+  influence: 功能增强、优化
+- type: 'feature'
+  item: Partial支持MPFR_RNDF
+  diff: MPFR_RNDF模式的工作方式如下：计算值要么对应于MPFR_RNDD，要么对应于MPFR_RNDU
+  influence: 功能增强，不影响原有功能
+- type: 'ABI'
+  item: 新增mpfr_fpif_export、mpfr_fpif_import、mpfr_fmodquo
+  diff: 以浮点交换格式导出和导入数字，这与每个字的位数和字节序无关。返回与mpfr_fmod对应的商的低位。
+  influence: 功能增强，无影响。
+- type: 'feature'
+  item: x86_64的测试覆盖率提高
+  diff: 将x86_64的测试覆盖率提高到了代码的98.6％。
+  influence: 功能增强、优化
+- type: 'ABI'
+  item: 新增mpfr_flags_clear，mpfr_flags_set，mpfr_flags_test，mpfr_flags_save和mpfr_flags_restore
+  diff: 用于对标志组进行操作。
+  influence: 功能增强
+- type: 'ABI'
+  item: 新增mpfr_set_float128和mpfr_get_float128
+  diff: '将_Float128数字转换为多精度浮点数，将多精度浮点数转换为_Float128数字'
+  influence: 功能增强
+- type: 'ABI'
+  item: 新增mpfr_round_nearest_away
+  diff: 用于支持多种输入（如IEEE 754-2008中所定义）。
+  influence: 功能增强
+- type: 'feature'
+  item: 将__float128更改为ISO/IEC TS 18661中指定的_Float128类型
+  diff: 如果不支持_Float128，则将__float128用作后备
+  influence: 功能增强 不影响
+- type: 'ABI'
+  item: 新增mpfr_rootn_ui
+  diff:由mpfr_root修改而来，名字发生变化，功能一致。
+  influence: 功能增强 不影响
+- type: 'ABI'
+  item: 新增mpfr_log_ui
+  diff:用于为Gamma函数计算整数mpfr_gamma_inc的对数
+  influence: 功能增强 不影响
+- type: 'ABI'
+  item: '新增mpfr_get_q
+	mpfr_free_pool
+	mpfr_nrandom和mpfr_erandom
+	mpfr_get_decimal128和mpfr_set_decimal128
+	mpfr_cmpabs_ui
+	mpfr_total_order_p'
+  diff: '将浮点数转换为有理数
+	添加了内部小型mpz_t池，该池用在避免内存分配的开销。
+	分别服从正态分布和指数分布的随机数。
+	仅当MPFR已构建为具有十进制浮点数支持时可用，转换多精度浮点数
+	比较FP的绝对值与无符号长度
+	两个浮点数的总顺序'
+  influence: 功能增强
+- type: 'ABI'
+  item: mpfr_grandom和mpfr_root
+  diff: 不建议使用，以后版本会删除
+  influence: 功能优化
+- type: 'CLI'
+  item: --enable-decimal-float配置选项不再需要--with-gmp-build
+  diff:现在默认情况下会自动检测到对十进制浮点数的支持
+  influence: 功能增强
+- type: 'CLI'
+  item: 新增--enable-formally-proven-code选项
+  diff:使用经过正式验证的可用的代码
+  influence: 功能增强
+- type: 'CLI'
+  item: 添加了配置选项--enable-assert = none
+  diff:以避免检查任何断言。
+  influence: 功能增强
+remark: '新增功能，影响小'
