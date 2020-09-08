@@ -48,17 +48,17 @@ interface_differences:
   influence: 功能增强 不影响
 - type: 'ABI'
   item: '新增mpfr_get_q
-	mpfr_free_pool
-	mpfr_nrandom和mpfr_erandom
-	mpfr_get_decimal128和mpfr_set_decimal128
-	mpfr_cmpabs_ui
-	mpfr_total_order_p'
+        mpfr_free_pool
+        mpfr_nrandom和mpfr_erandom
+        mpfr_get_decimal128和mpfr_set_decimal128
+        mpfr_cmpabs_ui
+        mpfr_total_order_p'
   diff: '将浮点数转换为有理数
-	添加了内部小型mpz_t池，该池用在避免内存分配的开销。
-	分别服从正态分布和指数分布的随机数。
-	仅当MPFR已构建为具有十进制浮点数支持时可用，转换多精度浮点数
-	比较FP的绝对值与无符号长度
-	两个浮点数的总顺序'
+        添加了内部小型mpz_t池，该池用在避免内存分配的开销。
+        分别服从正态分布和指数分布的随机数。
+        仅当MPFR已构建为具有十进制浮点数支持时可用，转换多精度浮点数
+        比较FP的绝对值与无符号长度
+        两个浮点数的总顺序'
   influence: 功能增强
 - type: 'ABI'
   item: mpfr_grandom和mpfr_root
