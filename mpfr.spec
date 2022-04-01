@@ -1,10 +1,10 @@
 Name: mpfr
 Version: 4.1.0
-Release: 1
+Release: 2
 Summary: A C library for multiple-precision floating-point computations
 URL: http://www.mpfr.org/
 License: LGPLv3+ and GPLv3+ and GFDL
-BuildRequires: autoconf libtool gmp-devel gcc git mpfr
+BuildRequires: autoconf libtool gmp-devel gcc git
 Requires: /sbin/ldconfig
 Requires: gmp >= 4.2.3
 
@@ -45,8 +45,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 rm -f $RPM_BUILD_ROOT%{_pkgdocdir}/COPYING  $RPM_BUILD_ROOT%{_pkgdocdir}/COPYING.LESSER
-cp -a %{_libdir}/libmpfr.so.4 $RPM_BUILD_ROOT%{_libdir}
-cp -a %{_libdir}/libmpfr.so.4.1.6 $RPM_BUILD_ROOT%{_libdir}
 
 %check
 make %{?_smp_mflags} check
@@ -80,6 +78,9 @@ fi
 %{_libdir}/pkgconfig/mpfr.pc
 
 %changelog
+* Fri Apr 01 2022 zhouwenpei<zhouwenpei1@h-partners.com> - 4.1.0-2
+- delete old so file
+
 * Fri Jul 24 2020 jinzhimin<jinzhimin2@huawei.com> - 4.1.0-1
 - update to 4.1.0
 
